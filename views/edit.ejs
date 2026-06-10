@@ -1,0 +1,29 @@
+<%- include('partials/head', { title: 'Edit Task' }) %>
+<%- include('partials/nav', { currentUser }) %>
+
+<div class="card">
+    <h1>Edit Task</h1>
+    <p class="subtitle">Update your task details</p>
+    <%- include('partials/alerts', { error }) %>
+
+    <form action="/todo/<%= todo._id %>?_method=PUT" method="POST">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" name="title" value="<%= todo.title %>" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <input type="text" id="description" name="description" value="<%= todo.description %>" required>
+        </div>
+        <div class="form-group checkbox-group">
+            <input type="checkbox" id="completed" name="completed" <%= todo.completed ? 'checked' : '' %>>
+            <label for="completed" style="margin:0">Completed</label>
+        </div>
+        <div class="actions-row">
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="/todo" class="btn btn-ghost">Cancel</a>
+        </div>
+    </form>
+</div>
+
+<%- include('partials/footer') %>

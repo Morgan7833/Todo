@@ -1,0 +1,26 @@
+<%- include('../partials/head', { title: 'Login' }) %>
+<%- include('../partials/nav', { currentUser: null }) %>
+
+<div class="card card-narrow">
+    <h1>Welcome back</h1>
+    <p class="subtitle">Sign in to manage your tasks</p>
+    <%- include('../partials/alerts', { error, success }) %>
+
+    <form action="/user/login" method="POST">
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+        </div>
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:100%">Sign In</button>
+    </form>
+
+    <p class="auth-footer">
+        Don't have an account? <a href="/user/register">Register here</a>
+    </p>
+</div>
+
+<%- include('../partials/footer') %>

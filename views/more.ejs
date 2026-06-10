@@ -1,0 +1,38 @@
+<%- include('partials/head', { title: todo.title }) %>
+<%- include('partials/nav', { currentUser }) %>
+
+<div class="card">
+    <div class="page-header" style="margin-bottom:1rem">
+        <h1><%= todo.title %></h1>
+        <span class="badge <%= todo.completed ? 'badge-done' : 'badge-pending' %>">
+            <%= todo.completed ? 'Done' : 'Pending' %>
+        </span>
+    </div>
+
+    <div class="detail-grid">
+        <div>
+            <div class="detail-label">Description</div>
+            <div class="detail-value"><%= todo.description %></div>
+        </div>
+        <div>
+            <div class="detail-label">Created</div>
+            <div class="detail-value"><%= new Date(todo.createdAt).toLocaleString() %></div>
+        </div>
+        <% if (todo.updatedAt && todo.updatedAt.getTime() !== todo.createdAt.getTime()) { %>
+            <div>
+                <div class="detail-label">Last updated</div>
+                <div class="detail-value"><%= new Date(todo.updatedAt).toLocaleString() %></div>
+            </div>
+        <% } %>
+    </div>
+
+    <div class="actions-row">
+        <a href="/todo/<%= todo._id %>/edit" class="btn btn-primary">Edit</a>
+        <form action="/todo/<%= todo._id %>/delete?_method=DELETE" method="POST">
+            <button type="submit" class="btn btn-danger">Delete</button>
+        </form>
+        <a href="/todo" class="btn btn-ghost">Back to list</a>
+    </div>
+</div>
+
+<%- include('partials/footer') %>

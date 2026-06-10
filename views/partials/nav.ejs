@@ -1,0 +1,14 @@
+<nav class="navbar">
+    <a href="/todo" class="brand">Todo<span>App</span></a>
+    <div class="nav-right">
+        <% if (typeof currentUser !== 'undefined' && currentUser) { %>
+            <span class="user-greeting">Hello, <strong><%= currentUser.username %></strong></span>
+            <form action="/user/logout" method="POST" style="margin:0">
+                <button type="submit" class="btn btn-ghost btn-sm">Logout</button>
+            </form>
+        <% } else { %>
+            <a href="/user/login" class="btn btn-ghost btn-sm">Login</a>
+            <a href="/user/register" class="btn btn-primary btn-sm">Register</a>
+        <% } %>
+    </div>
+</nav>
